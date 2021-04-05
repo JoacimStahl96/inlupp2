@@ -24,16 +24,16 @@ public class ProductServiceImpl implements ProductService {
         } else {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Selected table is empty");}
     }
 
-    /*public Optional<ProductEntity> getSpecificProduct(String product_id) {
-        if (productRepository.findByProductId(product_id).isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "product_id" + product_id + " doesn't exist");
+    public Optional<ProductEntity> getSpecificProduct(String productId) {
+        if (productRepository.findByProductId(productId).isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, productId  + " doesn't exist");
         }
-        return productRepository.findByProductId(product_id);
-    }*/
+        return productRepository.findByProductId(productId);
+    }
 
 
     public ProductDto createProduct(ProductDto productDetails) {
-        Optional<ProductEntity> checkProductIdEntity = productRepository.findByProductId(productDetails.getProduct_id());
+        Optional<ProductEntity> checkProductIdEntity = productRepository.findByProductId(productDetails.getProductId());
         if (checkProductIdEntity.isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product already exists");
         }

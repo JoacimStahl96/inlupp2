@@ -24,10 +24,10 @@ public class ProductController {
     List<ProductEntity> getProduct() {
        return productService.getProduct();
     }
-    /*@GetMapping(path = "{product_id}")
+    @GetMapping(path = "{product_id}")
     public Optional<ProductEntity> getSpecificProduct(@PathVariable("product_id") String product_id){
         return productService.getSpecificProduct(product_id);
-    }*/
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

@@ -2,15 +2,15 @@ package com.example.demo.model.request;
 
 public class ProductDetailsRequestModel {
 
-    private String product_id, name, category;
+    private String productId, name, category;
     private float cost;
 
-    public String getProduct_id() {
-        return product_id;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getName() {

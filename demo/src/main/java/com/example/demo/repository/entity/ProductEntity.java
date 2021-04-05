@@ -18,7 +18,7 @@ public class ProductEntity implements Serializable {
     private long id;
 
     @Column(length = 50, unique = true, nullable = false)
-    private String product_id;
+    private String productId;
 
     @Column(length = 100)
     private String name;
@@ -37,12 +37,12 @@ public class ProductEntity implements Serializable {
         this.id = id;
     }
 
-    public String getProduct_id() {
-        return product_id;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getName() {

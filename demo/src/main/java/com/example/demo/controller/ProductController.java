@@ -5,7 +5,6 @@ import com.example.demo.model.response.ProductResponseModel;
 import com.example.demo.repository.entity.ProductEntity;
 import com.example.demo.shared.dto.ProductDto;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.service.ProductService;
@@ -21,19 +20,19 @@ public class ProductController {
 
     private final ProductService productService;
 
-    public ProductController(ProductService productService){
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<ProductEntity> getProduct() {
-       return productService.getProduct();
+        return productService.getProduct();
     }
 
     @GetMapping(path = "{product_id}")
     @ResponseStatus(HttpStatus.OK)
-    public Optional<ProductEntity> getSpecificProduct(@PathVariable("product_id") String product_id){
+    public Optional<ProductEntity> getSpecificProduct(@PathVariable("product_id") String product_id) {
         return productService.getSpecificProduct(product_id);
     }
 
@@ -56,7 +55,7 @@ public class ProductController {
 
     @PutMapping("/{product_id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProductResponseModel updateProduct(@PathVariable("product_id") String product_id ,@RequestBody ProductDetailsRequestModel productDetailsModel) {
+    public ProductResponseModel updateProduct(@PathVariable("product_id") String product_id, @RequestBody ProductDetailsRequestModel productDetailsModel) {
 
         // copy json to dto in
         ProductDto productDtoIn = new ProductDto();
@@ -65,17 +64,18 @@ public class ProductController {
         // pass dto in to service layer
         Optional<ProductDto> productDtoOut = productService.updateProduct(product_id, productDtoIn);
         if (productDtoOut.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "Product doesn't exist");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product doesn't exist");
         }
+        // productDto gets all the information from what was updated in ProductServiceImpl
         ProductDto productDto = productDtoOut.get();
         ProductResponseModel productResponseModel = new ProductResponseModel();
+        // copies the information from the dto to a productResponseModel so we can return the new information to the database
         BeanUtils.copyProperties(productDto, productResponseModel);
         return productResponseModel;
     }
 
     @DeleteMapping(path = "/{product_id}")
-    public void deleteProduct(@PathVariable("product_id") String product_id ) {
-
+    public void deleteProduct(@PathVariable("product_id") String product_id) {
         productService.deleteProduct(product_id);
     }
 }

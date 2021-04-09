@@ -6,12 +6,16 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 public class ProductResponseModel {
+
     @JsonProperty("product_id")
     private String productId;
+
     @Size(min = 2, max = 100)
     private String name;
+
     @Size(min = 2, max = 120)
-    private  String category;
+    private String category;
+
     @Min(1)
     private float cost;
 

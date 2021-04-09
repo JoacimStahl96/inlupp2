@@ -4,20 +4,12 @@ import java.io.Serializable;
 
 public class ProductDto implements Serializable {
 
-  //  private long id;
     private String productId;
     private String name;
     private String category;
     private float cost;
 
-    /*public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-*/
     public String getProductId() {
         return productId;
     }
@@ -31,8 +23,8 @@ public class ProductDto implements Serializable {
     }
 
     public void setName(String name) {
-        if(name!=null){
-            this.name = name;    }
+        this.name = name;
+
     }
 
     public String getCategory() {
@@ -40,8 +32,7 @@ public class ProductDto implements Serializable {
     }
 
     public void setCategory(String category) {
-        if(category!=null){
-        this.category = category; }
+        this.category = category;
     }
 
     public float getCost() {

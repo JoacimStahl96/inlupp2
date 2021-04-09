@@ -1,9 +1,14 @@
 package com.example.demo.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /*
@@ -15,18 +20,23 @@ public class ProductEntity implements Serializable {
 
     @Id
     @GeneratedValue
+    @JsonIgnore
     private long id;
 
-    @Column(length = 50, unique = true, nullable = false)
+    @JsonProperty("product_id")
+    @Column( length = 50, unique = true)
     private String productId;
 
-    @Column(length = 100)
+    @Column(length = 100 ,nullable = false)
+    @Size(min = 2, max = 100)
     private String name;
 
     @Column(precision = 2, scale = 2)
+    @Min(1)
     private float cost;
 
-    @Column(length = 120)
+    @Column(length = 120, nullable = false)
+    @Size(min = 2, max = 120)
     private String category;
 
     public long getId() {
